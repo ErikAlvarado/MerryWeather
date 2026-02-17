@@ -16,7 +16,7 @@ CREATE TABLE users(
 idUser INT PRIMARY KEY IDENTITY(1, 1),
 name VARCHAR(50) NOT NULL,
 email VARCHAR(150) UNIQUE NOT NULL,
-passwordHash VARBINARY(MAX),
+passwordHash VARCHAR(255),
 dateRegistration DATETIME DEFAULT GETDATE(),
 idGender INT,
 idRole INT,
