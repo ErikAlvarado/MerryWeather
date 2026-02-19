@@ -27,3 +27,16 @@ REFERENCES gender(idGender),
 CONSTRAINT FK_UserRole FOREIGN KEY (idRole)
 REFERENCES role(idRole)
 );
+
+
+CREATE TABLE water_tank(
+idTank INT PRIMARY KEY IDENTITY(1,1),
+description VARCHAR(150),
+capcity DECIMAL(10,2),
+location VARCHAR(150),
+installation_date DATE,
+idUser INT NOT NULL,
+
+CONSTRAINT FK_water_tank_users
+FOREIGN KEY(idUser) REFERENCES users(idUser)
+);
