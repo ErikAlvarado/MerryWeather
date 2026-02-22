@@ -1,5 +1,5 @@
 <?php
-class User{
+class User {
     private $connection;
     private $table_name = "users";
 
@@ -14,8 +14,21 @@ class User{
     {
         $this->connection = $DataBase;
     }
+    public function emailExists()
+    {
+        $query = "SELECT 1 FROM " . $this->table_name . " WHERE email = :email";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(":email", $this->email);
+        $stmt->execute();
 
-    public function create(){
+        return $stmt->fetch() !== false;
+    }
+    public function create()
+    {
+        $this->email = strtolower(trim($this->email));
+        if ($this->emailExists()) {
+            return false;
+        }
         $query = "INSERT INTO " . $this->table_name . " 
                   (name, email, passwordHash, idRole, idGender) 
                   VALUES (:name, :email, :passwordHash, :idRole, :idGender)";
@@ -27,10 +40,7 @@ class User{
         $stmt->bindParam(":passwordHash", $hashedPassword);
         $stmt->bindParam(":idRole", $this->idRole);
         $stmt->bindParam(":idGender", $this->idGender);
-        if($stmt->execute()) {
-            return true;
-        }
-        return false;
+        return $stmt->execute();
     }
 }
 ?>

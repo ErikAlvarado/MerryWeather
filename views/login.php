@@ -13,8 +13,7 @@
 <main>
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
-
-        <form method="POST" action="" class="login-register">
+        <form method="POST" action="../controller/LoginController.php" class="login-register">
                 <input type="text" name="email" placeholder="email" required>
                 <input type="password" name="pass" placeholder="password" required>
                 <button type="submit">Ingresar</button>
@@ -25,11 +24,11 @@
 </html>
 
             
-            <!-- <?php if(isset($_GET['error'])): ?>
+             <?php if(isset($_GET['error'])): ?>
                 <p style="color: red;">Invalid email or password.</p>
             <?php endif; ?>
 
-            <label>Email</label>
+           <!-- <label>Email</label>
             <input type="email" name="email" required>
 
             <label>Password</label>

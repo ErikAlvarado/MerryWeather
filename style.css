@@ -15,6 +15,7 @@ header {
     padding: 15px;
     color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.623);
+    justify-content: space-between;
 }
 nav a {
     color: white;

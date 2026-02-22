@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>MW MX</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body bgcolor='Black'>
-    
+<?php
+include 'layout/header.php';
+?>
+    <div class="slider">
+        <div class="slides">
+            <img src="../img/slider.png" alt="image1">
+            <img src="../img/slider.png" alt="image2">
+            <img src="../img/slider.png" alt="image3">
+        </div>
+        <button class="prev" onclick="prevSlide()"><</button>
+        <button class="next" onclick="nextSlide()">></button>
+    </div>
+    <script src="../models/sliders.js"></script>
 </body>
 </html>

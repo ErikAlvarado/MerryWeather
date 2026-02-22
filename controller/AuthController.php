@@ -24,4 +24,4 @@ if ($action === 'register') {
     } else {    
         echo "The user could not be registered. The email address may already exist.";
     }
-} 
+}
