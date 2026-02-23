@@ -6,7 +6,8 @@
     </a>
     <nav>
         <div class="menu">
-        <a href="register.php">Inicio de sesión o registrarse</a>
+        <a href="login.php">Inicio de sesión</a>
+        <a href="register.php">Registrarse</a>
         </div>
     </nav>
 </header>

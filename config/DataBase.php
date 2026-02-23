@@ -1,6 +1,6 @@
 <?php
 class Database {
-    private $host = "YULIANN\SQLEXPRESS";
+    private $host = "DESKTOP-SJ8F4J0\SQLEXPRESS";
     private $db_name = "merryweather";
     public $connection;
 
