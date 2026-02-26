@@ -64,8 +64,8 @@ input {
    ========================================= */
 
 header {
-    background-color: var(--color-principal);
-    padding: 15px;
+    background-color: black;
+    padding: 10px;
     color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.623);
     display: flex;
@@ -76,7 +76,7 @@ header {
 
 nav a {
     color: white;
-    margin-right: 15px;
+    margin-right: 20px;
     text-decoration: none;
 }
 

@@ -1,7 +1,7 @@
 <header>
     <a href="/MerryWeather/views/home.php">
     <div class="logo">
-    <img src="../assets/img/logo2.png" alt="Logo"  style="width:160px;">
+    <img src="../assets/img/logoW.png" alt="Logo"  style="width:100px;">
     </div>
     </a>
     <nav>
