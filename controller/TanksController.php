@@ -28,7 +28,7 @@ class TanksController {
             'idUser' => $idUser
         ];
         if ($this->tankModel->create($data)) {
-            header("Location: monitoreo.php?success=1");
+            header("Location: dashboard.php");
         }
     }
 }

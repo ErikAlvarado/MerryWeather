@@ -37,7 +37,7 @@ include 'layout/header.php';
   <main class="content">
     <p class="session">Sesión iniciada como: <?php echo $_SESSION['user']['name'] ?? 'Invitado'; ?></strong></p>
 
-    <div class="form-container">
+    <!-- <div class="form-container">
         <h3>Agregar Nuevo Tinaco</h3>
         <form method="POST">
             <input class="input" type="text" name="description" placeholder="Descripción (ej: Tinaco Azotea)" required>
@@ -46,7 +46,7 @@ include 'layout/header.php';
             <input class="input" type="date" name="installation_date" required>
             <button type="submit" name="add_tank" class="btn">Guardar Tinaco</button>
         </form>
-    </div>
+    </div> -->
 
     <hr>
 
