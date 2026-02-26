@@ -8,13 +8,13 @@
 </head>
 <body>
 <?php include 'layout/header.php'; ?>
-<main>
+<div class="container">
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
         <form method="POST" action="../controller/AuthController.php?action=login" class="login-register">
-                <input type="text" name="email" placeholder="Correo electrónico" required>
-                <input type="password" name="pass" placeholder="Contraseña" required>
-                <button type="submit" class="btn-principal">Ingresar</button>
+                <input class="input" type="text" name="email" placeholder="Correo electrónico" required>
+                <input class="input" type="password" name="pass" placeholder="Contraseña" required>
+                <button type="submit" class="btn">Ingresar</button>
         </form>
         
         <?php if(isset($_GET['error'])): ?>
@@ -25,6 +25,6 @@
             <p style="color: green; text-align: center; margin-top: 10px;">Registro exitoso. ¡Inicia sesión!</p>
         <?php endif; ?>
     </div>
-</main>
+</div>
 </body>
 </html>

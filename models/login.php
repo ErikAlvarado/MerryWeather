@@ -7,7 +7,7 @@ class Login {
     }
 
     public function authenticate($email, $password) {
-        $sql = "SELECT TOP 1 idUser, email, passwordHash FROM users WHERE email = :email";
+        $sql = "SELECT TOP 1 idUser, name, email, passwordHash FROM users WHERE email = :email";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();

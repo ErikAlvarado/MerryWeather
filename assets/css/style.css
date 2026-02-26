@@ -1,6 +1,6 @@
-/* ==========================================================================
-   SECCIÓN 1: BASADO EN style.css (Variables y General)
-   ========================================================================== */
+/* =========================================
+                    GLOBAL
+   ========================================= */
 :root {
     --color-principal: #2d8ceb;
     --color-secundary: #1a5a9b;
@@ -12,12 +12,65 @@ body {
     font-family: Arial, sans-serif;
     background-color: var(--background-principal);
 }
+.container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(90vh - 80px);
+}
+
+input {
+    outline: none;
+}
+
+.input,
+.select {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: white;
+    border: 2px solid var(--color-principal);
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.input:hover {
+   padding: 17px; 
+   transition: padding 0.3s ease;
+   border: 2px solid var(--color-secundary);
+   border-radius: 20px;
+}
+
+.btn {
+  margin: 10px 0;
+  padding: 15px;
+  background-color: white;
+  border: 2px solid var(--color-principal);
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+
+.btn:hover {
+    padding: 17px;
+    color: white;
+    background-color: var(--color-principal);
+    border: 2px solid var(--color-secundary);
+    border-radius: 20px;
+    transition: padding 0.3s ease, background-color 0.5s ease, color 0.3s ease;
+}
+
+/* =========================================
+                    HEADER
+   ========================================= */
 
 header {
     background-color: var(--color-principal);
     padding: 15px;
     color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.623);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -31,18 +84,10 @@ nav a:hover {
     text-decoration: underline;
 }
 
-main {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(90vh - 80px);
-}
 
-input {
-    outline: none;
-}
-
+/* ===========================================
+               LOGIN AND REGISTER
+   =========================================== */
 .login-container {
     color: var(--color-principal);
     padding: 70px;
@@ -60,35 +105,8 @@ input {
     justify-content: center;
 }
 
-.login-register input,
-.login-register button,
-.login-register select {
-    margin: 10px 0;
-    padding: 15px;
-    background-color: white;
-    border: 2px solid var(--color-principal);
-    border-radius: 20px;
-    box-sizing: border-box;
-}
-
-.login-register input:hover {
-   padding: 17px; 
-   transition: padding 0.3s ease;
-   border: 2px solid var(--color-secundary);
-   border-radius: 20px;
-}
-
-.login-register button:hover {
-    padding: 17px;
-    color: white;
-    background-color: var(--color-principal);
-    border: 2px solid var(--color-secundary);
-    border-radius: 20px;
-    transition: padding 0.3s ease, background-color 0.5s ease, color 0.3s ease;
-}
-
 /* ==========================================================================
-   SECCIÓN 2: BASADO EN style1.css (Slider)
+   SECCIÓN 2: Slider
    ========================================================================== */
 .slider {
   width: 100vw;
@@ -125,7 +143,7 @@ input {
 .next { right: 10px; }
 
 /* ==========================================================================
-   SECCIÓN 3: BASADO EN style2.css (Dashboard / Panel)
+   SECCIÓN 3:Dashboard / Panel
    ========================================================================== */
 .dashboard {
   display: flex;
@@ -143,18 +161,6 @@ input {
   margin: 15px 0;
 }
 
-.btn {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.green { background: #2ecc71; color: white; }
-.red { background: #e74c3c; color: white; }
-.gray { background: #bbb; }
 
 .content {
   flex: 1;

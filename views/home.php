@@ -20,5 +20,9 @@ include 'layout/header.php';
         <button class="next" onclick="nextSlide()">></button>
     </div>
     <script src="../assets/js/sliders.js"></script>
+
+    <div>
+        <!-- AUN ESTA EN CONTSTRUCCION.... -->
+    </div>
 </body>
 </html>

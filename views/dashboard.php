@@ -8,6 +8,7 @@ if (!isset($_SESSION['user'])) {
 require_once "../controller/TanksController.php";
 $controller = new TanksController();
 $user = $_SESSION['user'];
+$userName = $_SESSION['user']['name'];
 
 $controller->createTank($user['idUser']);
 $tanks = $controller->listUserTanks($user['idUser']);
@@ -28,22 +29,22 @@ include 'layout/header.php';
   <aside class="sidebar">
     <h2>MerryWeather</h2>
     <img src="../assets/img/tinaco.jpg" alt="tinaco" width="100">
-    <button class="btn green">Monitoreo</button>
-    <button class="btn gray">Perfil</button>
-    <a href="../controller/AuthController.php?action=logout"><button class="btn red">Cerrar sesión</button></a>
+    <button class="btn">Monitoreo</button>
+    <button class="btn">Perfil</button>
+    <a href="../controller/AuthController.php?action=logout"><button class="btn">Cerrar sesión</button></a>
   </aside>
 
   <main class="content">
-    <p class="session">Sesión iniciada como: <strong><?php echo htmlspecialchars($user['name']); ?></strong></p>
+    <p class="session">Sesión iniciada como: <?php echo $_SESSION['user']['name'] ?? 'Invitado'; ?></strong></p>
 
     <div class="form-container">
         <h3>Agregar Nuevo Tinaco</h3>
         <form method="POST">
-            <input type="text" name="description" placeholder="Descripción (ej: Tinaco Azotea)" required>
-            <input type="number" step="0.01" name="capacity" placeholder="Capacidad (Lts)" required>
-            <input type="text" name="location" placeholder="Ubicación" required>
-            <input type="date" name="installation_date" required>
-            <button type="submit" name="add_tank" class="btn green">Guardar Tinaco</button>
+            <input class="input" type="text" name="description" placeholder="Descripción (ej: Tinaco Azotea)" required>
+            <input class="input" type="number" step="0.01" name="capacity" placeholder="Capacidad (Lts)" required>
+            <input class="input" type="text" name="location" placeholder="Ubicación" required>
+            <input class="input" type="date" name="installation_date" required>
+            <button type="submit" name="add_tank" class="btn">Guardar Tinaco</button>
         </form>
     </div>
 
