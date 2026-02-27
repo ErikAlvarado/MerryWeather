@@ -68,5 +68,32 @@ include 'layout/header.php';
     </div>
   </main>
 </div>
+<script>
+function SaveTanks() {
+    const listTanks = <?php echo json_encode($tanks); ?>;
+    
+    if (!db || !listTanks) return;
+
+    const trans = db.transaction(["tanks"], "readwrite");
+    const storage = trans.objectStore("tanks");
+
+    listTanks.forEach(tank => {
+        const register = {
+            idTank: parseInt(tank.idTank),
+            description: tank.description,
+            capcity: tank.capcity,
+            location: tank.location,
+            installation_date: tank.installation_date,
+            idUser: tank.idUser
+        };
+        storage.put(register); 
+    });
+
+    trans.oncomplete = function() {
+        console.log("Sincronización local completa con SQL Server");
+    };
+}
+</script>
+<script src="../assets/js/indexed_tanks.js"></script>
 </body>
 </html>
