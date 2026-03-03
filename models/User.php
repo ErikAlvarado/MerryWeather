@@ -33,7 +33,7 @@ class User {
                   (name, email, passwordHash, idRole, idGender) 
                   VALUES (:name, :email, :passwordHash, :idRole, :idGender)";
         $stmt = $this->connection->prepare($query);
-        $hashedPassword = password_hash($this->passwordHash, PASSWORD_BCRYPT);
+        $hashedPassword = password_hash($this->passwordHash, PASSWORD_DEFAULT);
 
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":email", $this->email);
@@ -41,6 +41,20 @@ class User {
         $stmt->bindParam(":idRole", $this->idRole);
         $stmt->bindParam(":idGender", $this->idGender);
         return $stmt->execute();
+    }
+
+    public function authenticate($email, $password) {
+        $query = "SELECT TOP 1 idUser, name, email, passwordHash FROM " . $this->table_name . " WHERE email = :email";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($password, $user['passwordHash'])) {
+            return $user;
+        }
+        return false;
     }
 }
 ?>

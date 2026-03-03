@@ -40,3 +40,12 @@ idUser INT NOT NULL,
 CONSTRAINT FK_water_tank_users
 FOREIGN KEY(idUser) REFERENCES users(idUser)
 );
+
+CREATE TABLE water_level_log (
+    idLog INT PRIMARY KEY IDENTITY(1,1),
+    current_level DECIMAL(10,2),
+    water_quality_score INT,
+    reading_date DATETIME DEFAULT GETDATE(),
+    idTank INT,
+    CONSTRAINT FK_log_tank FOREIGN KEY (idTank) REFERENCES water_tank(idTank)
+);

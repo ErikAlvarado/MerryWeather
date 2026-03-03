@@ -15,7 +15,7 @@
             <a href="../controller/AuthController.php?action=logout" class="btn-logout">Cerrar Sesión</a>
         <?php else: ?>
             <a href="login.php">Inicio de sesión</a>
-            <a href="registro.php">Registrarse</a>
+            <a href="register.php">Registrarse</a>
         <?php endif; ?>
         </div>
     </nav>
