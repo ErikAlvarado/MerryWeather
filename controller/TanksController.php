@@ -1,6 +1,6 @@
 <?php
 // Usamos __DIR__ para asegurar que encuentre los archivos sin importar desde dónde se llame el controlador
-require_once __DIR__ . "/../config/Database.php";
+require_once __DIR__ . "/../config/DataBase.php";
 require_once __DIR__ . "/../models/Tanks.php";
 
 class TanksController {
