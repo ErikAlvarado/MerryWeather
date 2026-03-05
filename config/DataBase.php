@@ -1,20 +1,21 @@
 <?php
 class Database {
-    private $host = "DESKTOP-SJ8F4J0\SQLEXPRESS";
+    private $host = "localhost"; 
     private $db_name = "merryweather";
+    private $username = "root";
+    private $password = "";
     public $connection;
 
     public function getConnection() {
         $this->connection = null;
 
         try {
-            $dsn = "sqlsrv:Server={$this->host};Database={$this->db_name};TrustServerCertificate=true";
-
-            $this->connection = new PDO($dsn);
+            $dsn = "mysql:host={$this->host};dbname={$this->db_name};charset=utf8mb4";
+            $this->connection = new PDO($dsn, $this->username, $this->password);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         } catch (PDOException $exception) {
-            die("Error de conexión SQL Server: " . $exception->getMessage());
+            die("Error de conexión MySQL: " . $exception->getMessage());
         }
 
         return $this->connection;
