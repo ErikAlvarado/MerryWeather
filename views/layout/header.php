@@ -8,9 +8,18 @@
     
     <nav>
         <div class="menu">
-        <?php if (isset($_SESSION['user'])): ?>
-            <a href="dashboard.php">Ver Tinacos</a>
+        <?php if (isset($_SESSION['user'])): 
+        $currentPage = basename($_SERVER['PHP_SELF']);?>
+        <?php if ($currentPage !== 'dashboard.php'): ?>
+            <a href="dashboard.php">Inicio</a>
+        <?php endif; ?>
+
+        <?php if ($currentPage !== 'tanks.php'): ?>
+            <a href="tanks.php">Lista Tinacos</a>
+        <?php endif; ?>
+        <?php if($currentPage !== 'createTanks.php'):?>
             <a href="createTanks.php">Agregar Tinaco</a>
+        <?php endif;?>
             <a class="user-name">Hola, <?php echo htmlspecialchars($_SESSION['user']['name']?? 'Invitado'); ?></a>
             <a href="../controller/AuthController.php?action=logout" class="btn-logout">Cerrar Sesión</a>
         <?php else: ?>

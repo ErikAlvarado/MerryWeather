@@ -24,7 +24,6 @@ class Tanks {
     }
 
     public function create($data){
-        // ATENCIÓN: He usado 'capcity' en el nombre del campo SQL para que coincida con tu script de MySQL
         $query = "INSERT INTO " . $this->tableName . " (description, capcity, location, installation_date, idUser) 
                   VALUES (:description, :capacity, :location, :installation_date, :idUser)";
         
@@ -37,6 +36,16 @@ class Tanks {
             ":installation_date" => $data['installation_date'],
             ":idUser"            => $data['idUser']
         ]);
+    }
+
+    public function delete($idTank, $idUser){
+        $query = "DELETE FROM". $this->tableName . "WHERE idTank = :idTank AND idUser = :idUser";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam("idTank", $idTank);
+        $stmt->bindParam("idUser", $idUser);
+
+        return $stmt->execute();
     }
 }
 ?>

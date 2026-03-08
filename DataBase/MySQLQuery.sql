@@ -1,23 +1,19 @@
 CREATE DATABASE IF NOT EXISTS merryweather;
 USE merryweather;
 
--- 1. Tabla gender
 CREATE TABLE gender(
     idGender INT PRIMARY KEY AUTO_INCREMENT,
     description VARCHAR(50) NOT NULL
 );
 
--- 2. Tabla role
 CREATE TABLE role(
     idRole INT PRIMARY KEY AUTO_INCREMENT,
     description VARCHAR(50) NOT NULL
 );
 
--- Insertar valores base para que el bucle funcione
 INSERT INTO gender (description) VALUES ('Hombre'), ('Mujer'), ('Otro');
 INSERT INTO role (description) VALUES ('User'), ('Admin');
 
--- 3. Tabla users
 CREATE TABLE users(
     idUser INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
@@ -30,7 +26,6 @@ CREATE TABLE users(
     CONSTRAINT FK_UserRole FOREIGN KEY (idRole) REFERENCES role(idRole)
 );
 
--- 4. Tabla water_tank
 CREATE TABLE water_tank(
     idTank INT PRIMARY KEY AUTO_INCREMENT,
     description VARCHAR(150),
@@ -41,7 +36,6 @@ CREATE TABLE water_tank(
     CONSTRAINT FK_water_tank_users FOREIGN KEY(idUser) REFERENCES users(idUser)
 );
 
--- 5. Tabla water_level_log
 CREATE TABLE water_level_log (
     idLog INT PRIMARY KEY AUTO_INCREMENT,
     current_level DECIMAL(10,2),

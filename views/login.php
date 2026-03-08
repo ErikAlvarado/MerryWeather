@@ -8,8 +8,6 @@
 <body>
 
 <?php 
-    // Usamos include normal; si layout está en la misma carpeta que login.php, 
-    // la ruta 'layout/header.php' es correcta.
     include 'layout/header.php'; 
 ?>
 

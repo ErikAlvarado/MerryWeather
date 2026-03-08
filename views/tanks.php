@@ -1,15 +1,58 @@
+<?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
+}
+
+require_once "../controller/TanksController.php";
+$controller = new TanksController();
+$user = $_SESSION['user'];
+$userName = $_SESSION['user']['name'];
+
+$controller->createTank($user['idUser']);
+$tanks = $controller->listUserTanks($user['idUser']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estado del tinaco</title>
+    <title>Lista de Tinacos</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
 <body>
 <?php
+include 'layout/header.php';
 ?>
+<div class="tanks">
+  <main class="content">
+    <p class="session">Sesión iniciada como: <?php echo $_SESSION['user']['name'] ?? 'Invitado'; ?></strong></p>
 
+    <hr>
+
+    <h3>TINACOS REGISTRADOS:</h3>
+    <div class="tanks-grid" style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <?php if(empty($tanks)): ?>
+            <p>No hay tinacos registrados.</p>
+        <?php else: ?>
+            <?php foreach($tanks as $tank): ?>
+                <div class="tank-card" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <h4><?php echo htmlspecialchars($tank['description']); ?></h4>
+                    <p><strong>Capacidad:</strong> <?php echo $tank['capcity']; ?> L</p>
+                    <p><strong>Ubicación:</strong> <?php echo htmlspecialchars($tank['location']); ?></p>
+                    <p><strong>Instalado:</strong> <?php echo $tank['installation_date']; ?></p>
+                    <div class="status-indicator" style="color: green;">Estado: Óptimo</div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
+  </main>
+</div>
+<script>
+const tanksFromPHP = <?php echo json_encode($tanks); ?>;
+</script>
+<script src="../assets/js/indexed_tanks.js"></script>
 </body>
 </html>

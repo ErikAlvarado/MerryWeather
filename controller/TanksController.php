@@ -1,5 +1,4 @@
 <?php
-// Usamos __DIR__ para asegurar que encuentre los archivos sin importar desde dónde se llame el controlador
 require_once __DIR__ . "/../config/DataBase.php";
 require_once __DIR__ . "/../models/Tanks.php";
 
@@ -11,7 +10,6 @@ class TanksController {
     public function __construct(){
         $database = new Database();
         $this->db = $database->getConnection();
-        // Asegúrate de que el archivo en models se llame "Tanks.php" y la clase "Tanks"
         $this->tankModel = new Tanks($this->db);
     }
 
@@ -31,8 +29,20 @@ class TanksController {
             ];
             
             if ($this->tankModel->create($data)) {
-                header("Location: dashboard.php");
-                exit(); // Siempre añade exit() después de un header Location
+                header("Location: tanks.php");
+                exit();
+            }
+        }
+    }
+    public function deleteTank($idUser){
+        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])){
+            $idTank = $_POST['idTank'];
+            
+            if ($this->tankModel->delete($idTank, $idUser)) {
+                header("Location: tanks.php?msg=deleted");
+                exit();
+            } else {
+                echo "Error al intentar eliminar el tinaco.";
             }
         }
     }
