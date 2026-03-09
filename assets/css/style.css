@@ -242,6 +242,7 @@ nav a:hover {
         rgba(0,0,0,1) 100%
     );
 }
+
 ul{
     margin: 15px 0;
     padding-left: 20px;
@@ -250,7 +251,182 @@ ul{
 li{
     margin-bottom: 6px;
 }
+
 img{
     display: block;
     margin: 20px auto;
+}
+
+/*---------------------------------------Ventanas Modales---------------------------------------*/
+.modal{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.6);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+}
+
+.modal-contenido{
+    background:#2d8ceb;
+    padding:30px;
+    width:60%;
+    border-radius:10px;
+    text-align:start;
+
+    transform: translateY(-50px);
+    transition:0.3s;
+}
+
+.modal.activa{
+    opacity:1;
+    visibility:visible;
+}
+
+.modal.activa .modal-contenido{
+    transform: translateY(0);
+}
+
+.cerrar{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:28px;
+    cursor:pointer;
+}
+
+/*-----------------------------------Contenedor de Botones Distribuidos-------------------------------------------------*/
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 10%;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/*-----------------------------------Personalizacion de los botones de Home-------------------------------------------------*/
+.btn-modal{
+    background: #2d8ceb;
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+    min-width: 200px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.btn-modal:hover{
+    background: #1a5a9b;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(45, 140, 235, 0.4);
+}
+
+.btn-modal:active{
+    transform: translateY(-1px);
+}
+
+/* =========================================
+        RESPONSIVE
+========================================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .buttons-container {
+        padding: 30px 5%;
+        gap: 15px;
+    }
+
+    .btn-modal {
+        padding: 16px 35px;
+        font-size: 16px;
+        min-width: 150px;
+    }
+
+    .home-content {
+        padding: 80px 5%;
+    }
+}
+
+/* Tablets pequeñas y smartphones */
+@media (max-width: 768px) {
+    .buttons-container {
+        flex-direction: column;
+        padding: 20px 5%;
+        gap: 15px;
+    }
+
+    .btn-modal {
+        width: 100%;
+        padding: 16px 30px;
+        font-size: 16px;
+        min-width: auto;
+    }
+
+    .home-content {
+        padding: 60px 5%;
+        min-height: auto;
+    }
+
+    .hero {
+        height: 60vh;
+    }
+
+    .modal-contenido {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+/* Smartphones pequeños */
+@media (max-width: 480px) {
+    .buttons-container {
+        padding: 15px 3%;
+        gap: 10px;
+    }
+
+    .btn-modal {
+        padding: 14px 20px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .home-content {
+        padding: 40px 3%;
+    }
+
+    .hero {
+        height: 50vh;
+    }
+
+    .hero::after {
+        height: 150px;
+    }
+
+    .modal-contenido {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .cerrar {
+        font-size: 24px;
+        right: 15px;
+        top: 10px;
+    }
 }
