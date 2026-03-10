@@ -11,6 +11,7 @@ $user = $_SESSION['user'];
 $userName = $_SESSION['user']['name'];
 
 $controller->createTank($user['idUser']);
+$controller->deleteTank($user['idUser']);
 $tanks = $controller->listUserTanks($user['idUser']);
 ?>
 <!DOCTYPE html>
@@ -28,7 +29,6 @@ include 'layout/header.php';
 ?>
 <div class="tanks">
   <main class="content">
-    <p class="session">Sesión iniciada como: <?php echo $_SESSION['user']['name'] ?? 'Invitado'; ?></strong></p>
 
     <hr>
 
@@ -39,11 +39,25 @@ include 'layout/header.php';
         <?php else: ?>
             <?php foreach($tanks as $tank): ?>
                 <div class="tank-card" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                    <h4><?php echo htmlspecialchars($tank['description']); ?></h4>
-                    <p><strong>Capacidad:</strong> <?php echo $tank['capcity']; ?> L</p>
-                    <p><strong>Ubicación:</strong> <?php echo htmlspecialchars($tank['location']); ?></p>
-                    <p><strong>Instalado:</strong> <?php echo $tank['installation_date']; ?></p>
-                    <div class="status-indicator" style="color: green;">Estado: Óptimo</div>
+                    <div class="tank-info">
+                    <img src="" alt="">
+                        <h4><?php echo htmlspecialchars($tank['description']); ?></h4>
+                        <p><strong>Capacidad:</strong> <?php echo $tank['capcity']; ?> L</p>
+                        <p><strong>Ubicación:</strong> <?php echo htmlspecialchars($tank['location']); ?></p>
+                        <p><strong>Instalado:</strong> <?php echo $tank['installation_date']; ?></p>
+                        <div class="status-indicator" style="color: green;">Estado: Óptimo</div>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropbtn" onclick="toggleDropdown(this)">Opciones</button>
+                        <div class="dropdown-content">
+                            <a href="edit_tank.php?id=<?php echo $tank['idTank']; ?>">Editar</a>
+                            
+                            <form action="tanks.php" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este tanque?');">
+                                <input type="hidden" name="idTank" value="<?php echo $tank['idTank']; ?>">
+                                <button type="submit" name="delete" class="btn-delete">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
@@ -53,6 +67,7 @@ include 'layout/header.php';
 <script>
 const tanksfrom = <?php echo json_encode($tanks); ?>;
 </script>
+<script src="/MerryWeather/assets/js/tanksdropdown.js"></script>
 <script src="../assets/js/indexed_tanks.js"></script>
 </body>
 </html>

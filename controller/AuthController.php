@@ -38,7 +38,7 @@ switch ($action) {
 
             if ($userData) {
                 $_SESSION['user'] = $userData;
-                header("Location: ../views/dashboard.php");
+                header("Location: ../views/tanks.php");
                 exit();
             } else {
                 header("Location: ../views/login.php?error=1");

@@ -3,7 +3,7 @@
    ========================================= */
 :root {
     --color-principal: #2d8ceb;
-    --color-secundary: #1a5a9b;
+    --color-secundary: #1f71c4;
     --background-principal: rgb(250, 250, 250);
 }
 
@@ -73,21 +73,22 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 5px;
 }
 
 nav a {
     color: white;
     margin-right: 20px;
     text-decoration: none;
-    padding: 3px;
-    border: solid transparent 2px;
+    padding: 5px;
 }
 
 nav a:hover {
-    padding: 5px;
-    border: solid white 3px;
-    border-radius: 50px;
-    transition: padding 0.3s ease, background-color 0.5s ease, color 0.3s ease;
+    color: var(--color-principal);
+    background-color: white;
+    border: solid transparent 1px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.3s ease, border 0.3s ease;
 }
 .logo{
     display: flex;
@@ -170,79 +171,145 @@ nav a:hover {
     justify-content: center;
 }
 
-/* ==========================================================================
-   SECCIÓN 2: Slider
-   ========================================================================== */
-.slider {
-  width: 100vw;
-  height: 80vh;
-  overflow: hidden;
-  position: relative;
+
+
+/* =============================================================
+   TANKS
+   ============================================================= */
+
+.tank-card {
+    background: white; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    width: 260px;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    transition: all 0.3s ease;
 }
 
-.slides {
-  display: flex;
-  height: 100%;
-  transition: transform 0.5s ease-in-out;
+.tank-info {
+    padding: 20px;
 }
 
-.slides img {
-  min-width: 100%;
-  height: 100%;
-  object-fit: cover;
+.dropdown {
+    width: 100%;
 }
 
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
-  font-size: 30px;
-  padding: 10px;
-  cursor: pointer;
+.dropbtn {
+    width: 100%;
+    background-color: #f8f9fa;
+    color: #555;
+    padding: 12px 0;
+    font-size: 16px;
+    border: none;
+    border-top: 1px solid #eee;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    font-weight: bold;
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
+.dropdown-content {
+    display: none;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid #eee;
+}
 
-/* ==========================================================================
-   SECCIÓN 3:Dashboard / Panel
-   ========================================================================== */
-.tanks {
-  display: flex;
-  min-height: 100vh;
+.show {
+    display: block !important;
+    animation: slideDown 0.3s ease-out;
+}
+
+.dropdown-content a, 
+.dropdown-content button {
+    color: #333;
+    padding: 15px;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.btn-delete {
+    color: #d9534f !important;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 
 
 
-.content {
-  flex: 1;
-  padding: 30px;
-}
 
-.session {
-  text-align: right;
-  color: #555;
-}
 
-.activo {
-  color: green;
-}
 
-.progress {
-  background: #ddd;
-  height: 15px;
-  border-radius: 5px;
-  overflow: hidden;
-}
 
-.progress-fill {
-  height: 100%;
-  background: green;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* =========================================
         HERO PARALLAX
 ========================================= */

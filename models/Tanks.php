@@ -39,11 +39,11 @@ class Tanks {
     }
 
     public function delete($idTank, $idUser){
-        $query = "DELETE FROM". $this->tableName . "WHERE idTank = :idTank AND idUser = :idUser";
+        $query = "DELETE FROM ". $this->tableName . " WHERE idTank = :idTank AND idUser = :idUser";
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam("idTank", $idTank);
-        $stmt->bindParam("idUser", $idUser);
+        $stmt->bindParam(":idTank", $idTank);
+        $stmt->bindParam(":idUser", $idUser);
 
         return $stmt->execute();
     }
