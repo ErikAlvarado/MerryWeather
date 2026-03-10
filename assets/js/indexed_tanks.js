@@ -3,7 +3,6 @@ const request = indexedDB.open("MerryWeather", 1);
 
 request.onupgradeneeded = function(event) {
     const database = event.target.result;
-    // idTank es la llave primaria en tu script de MySQL
     const storage = database.createObjectStore("tanks", { keyPath: "idTank" });
     storage.createIndex("Descripcion", "description", { unique: false });
     console.log("IndexedDB: Estructura creada.");
@@ -12,8 +11,6 @@ request.onupgradeneeded = function(event) {
 request.onsuccess = function(event) {
     db = event.target.result;
     console.log("IndexedDB: Conexión establecida.");
-    
-    // Llamamos a la función de guardado
     saveTanksToIndexedDB();
 };
 
@@ -22,8 +19,7 @@ request.onerror = function(event) {
 };
 
 function saveTanksToIndexedDB() {
-    // Comprobamos si la variable global existe y tiene datos
-    if (typeof tanksFromPHP === 'undefined' || !tanksFromPHP || !db) {
+    if (typeof tanksfrom === 'undefined' || !tanksfrom || !db) {
         console.warn("No hay datos disponibles para sincronizar.");
         return;
     }
@@ -31,11 +27,11 @@ function saveTanksToIndexedDB() {
     const transaction = db.transaction(["tanks"], "readwrite");
     const storage = transaction.objectStore("tanks");
 
-    tanksFromPHP.forEach(tank => {
+    tanksfrom.forEach(tank => {
         const register = {
             idTank: parseInt(tank.idTank),
             description: tank.description,
-            capcity: tank.capcity, // Coincide con tu script SQL
+            capcity: tank.capcity,
             location: tank.location,
             installation_date: tank.installation_date,
             idUser: tank.idUser

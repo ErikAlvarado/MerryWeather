@@ -67,9 +67,8 @@ input {
 
 header {
     background-color: var(--color-principal);
-    padding: 10px;
     color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.623);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.877);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -80,17 +79,75 @@ nav a {
     color: white;
     margin-right: 20px;
     text-decoration: none;
+    padding: 3px;
+    border: solid transparent 2px;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    padding: 5px;
+    border: solid white 3px;
+    border-radius: 50px;
+    transition: padding 0.3s ease, background-color 0.5s ease, color 0.3s ease;
 }
 .logo{
-      display: flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
 }
 
+
+.dropdownmenu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 10px;
+}
+
+.dropdownmenu span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 2px 0;
+    transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap; 
+        transition: all 0.3s ease;
+    }
+
+    .dropdownmenu {
+        display: flex;
+    }
+
+    nav {
+        display: none; 
+        width: 100%;
+        background-color: var(--color-principal);
+    }
+
+    nav.active {
+        display: block !important;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 0;
+    }
+
+    nav a {
+        width: 100%;
+        text-align: center;
+        margin: 5px 0;
+        padding: 12px 0;
+    }
+}
 
 
 /* ===========================================
@@ -158,16 +215,7 @@ nav a:hover {
   min-height: 100vh;
 }
 
-.sidebar {
-  width: 260px;
-  background: #eaeaea;
-  padding: 20px;
-}
 
-.sidebar img {
-  width: 100%;
-  margin: 15px 0;
-}
 
 
 .content {
@@ -252,9 +300,11 @@ li{
     margin-bottom: 6px;
 }
 
-img{
+.home-content img{
     display: block;
     margin: 20px auto;
+    max-width: 100%; 
+    height: auto;
 }
 
 /*---------------------------------------Ventanas Modales---------------------------------------*/
@@ -330,6 +380,7 @@ img{
     text-decoration: none;
     display: inline-block;
     white-space: nowrap;
+    margin-bottom: 5px;
 }
 
 .btn-modal:hover{

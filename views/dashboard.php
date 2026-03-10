@@ -16,16 +16,16 @@ $tanks = $controller->listUserTanks($user['idUser']);
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Monitoreo - MerryWeather</title>
-  <link rel="stylesheet" href="../assets/css/style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Monitoreo - MerryWeather</title>
+        <link rel="stylesheet" href="../assets/css/style.css">
+    </head>
 <body>
 <?php
 include 'layout/header.php';
 ?>
-
 </body>
 </html>
 

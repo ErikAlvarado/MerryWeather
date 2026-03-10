@@ -1,12 +1,18 @@
 <header>
     <a href="/MerryWeather/views/home.php" style="text-decoration: none;">
-    <div class="logo">
-    <img src="../assets/img/logoW.png" alt="Logo"  style="width:70px;">
-    <p style="color:white; text-decoration: none; font-weight: bold;">MerryWeather</p>
-    </div>
+        <div class="logo">
+            <img src="../assets/img/logoW.png" alt="Logo"  style="width:50px;">
+            <p style="color:white; text-decoration: none; font-weight: bold;">MerryWeather</p>
+        </div>
     </a>
-    
-    <nav>
+
+    <button class="dropdownmenu" id="dropdownmenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <nav id="nav-menu">
         <div class="menu">
         <?php if (isset($_SESSION['user'])): 
         $currentPage = basename($_SERVER['PHP_SELF']);?>
@@ -28,4 +34,5 @@
         <?php endif; ?>
         </div>
     </nav>
+   <script src="../assets/js/dropdownmenu.js"></script>
 </header>

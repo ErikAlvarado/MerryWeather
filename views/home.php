@@ -21,7 +21,7 @@ include 'layout/header.php';
 <section class="hero">
     <div class="hero-overlay">
         <h1>Monitoreo de Tinacos</h1>
-        <p>Sistema inteligente con Arduino y sensores</p>
+        <p style="color: white;">Sistema inteligente con Arduino y sensores</p>
     </div>
 </section>
 
@@ -78,7 +78,7 @@ garantizar la disponibilidad y el uso eficiente del agua.
 <p style="font-size:14px; color:gray;">
 *Datos estimados con fines ilustrativos para mostrar el impacto del desperdicio de agua en sistemas de almacenamiento doméstico.
 </p>
-<img src="../assets/img/Estadisticas.png" alt="Estadísticas del sistema" width="800" >
+<img src="../assets/img/Estadisticas.png" alt="Estadísticas del sistema">
 <div class="modal-botones">
 
 <button class="btn-modal" data-modal="modalODS">ODS 6</button>

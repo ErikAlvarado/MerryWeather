@@ -51,7 +51,7 @@ include 'layout/header.php';
   </main>
 </div>
 <script>
-const tanksFromPHP = <?php echo json_encode($tanks); ?>;
+const tanksfrom = <?php echo json_encode($tanks); ?>;
 </script>
 <script src="../assets/js/indexed_tanks.js"></script>
 </body>
