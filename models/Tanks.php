@@ -24,8 +24,8 @@ class Tanks {
     }
 
     public function create($data){
-        $query = "INSERT INTO " . $this->tableName . " (description, capcity, location, installation_date, idUser) 
-                  VALUES (:description, :capacity, :location, :installation_date, :idUser)";
+        $query = "INSERT INTO " . $this->tableName . " (description, capcity, location, idUser) 
+                  VALUES (:description, :capacity, :location, :idUser)";
         
         $stmt = $this->conn->prepare($query);
         
@@ -33,7 +33,6 @@ class Tanks {
             ":description"       => $data['description'],
             ":capacity"          => $data['capacity'],
             ":location"          => $data['location'],
-            ":installation_date" => $data['installation_date'],
             ":idUser"            => $data['idUser']
         ]);
     }
@@ -46,6 +45,22 @@ class Tanks {
         $stmt->bindParam(":idUser", $idUser);
 
         return $stmt->execute();
+    }
+
+    public function update($idTank, $idUser, $description, $capacity, $location){
+        $query = "UPDATE " . $this->tableName . " 
+                SET description = :description, capcity = :capcity, location = :location
+                WHERE idTank = :idTank AND idUser =:idUser";
+
+        $stmt = $this->conn->prepare($query);
+
+        return $stmt->execute([
+            ":idTank" => $idTank,
+            ":idUser" => $idUser,
+            ":description" => $description,
+            ":capcity" => $capacity,
+            ":location" => $location
+        ]);
     }
 }
 ?>

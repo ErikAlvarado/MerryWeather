@@ -24,7 +24,6 @@ class TanksController {
                 'description'       => $_POST['description'],
                 'capacity'          => $_POST['capacity'],
                 'location'          => $_POST['location'],
-                'installation_date' => $_POST['installation_date'],
                 'idUser'            => $idUser
             ];
             
@@ -37,7 +36,7 @@ class TanksController {
     public function deleteTank($idUser){
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])){
             $idTank = $_POST['idTank'];
-            
+
             if ($this->tankModel->delete($idTank, $idUser)) {
                 header("Location: tanks.php?msg=deleted");
                 exit();
@@ -45,6 +44,23 @@ class TanksController {
                 echo "Error al intentar eliminar el tinaco.";
             }
         }
+    }
+
+    public function updateTank($idUser){
+        if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_tank'])){
+            $idTank = $_POST['idTank'];
+            $description = $_POST['description'];
+            $capacity = $_POST['capacity'];
+            $lotacion = $_POST['location'];
+
+            if ($this->tankModel->update($idTank, $idUser, $description, $capacity, $lotacion)) {
+                header("Location: tanks.php?msg=Actualizado");
+                exit();
+            } else {
+                header("Location: update_tank.php?msg=Algo fallo, vuelve a intentar");
+            }
+        }
+        return false;
     }
 }
 ?>

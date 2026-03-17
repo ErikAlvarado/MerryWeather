@@ -31,10 +31,12 @@ CREATE TABLE water_tank(
     description VARCHAR(150),
     capcity DECIMAL(10,2),
     location VARCHAR(150),
-    installation_date DATE,
+    installation_date DATETIME DEFAULT CURRENT_TIMESTAMP,  
     idUser INT NOT NULL,
     CONSTRAINT FK_water_tank_users FOREIGN KEY(idUser) REFERENCES users(idUser)
 );
+
+ALTER TABLE water_tank MODIFY COLUMN installation_date DATETIME DEFAULT CURRENT_TIMESTAMP;
 
 CREATE TABLE water_level_log (
     idLog INT PRIMARY KEY AUTO_INCREMENT,

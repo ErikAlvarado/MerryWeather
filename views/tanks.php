@@ -12,6 +12,7 @@ $userName = $_SESSION['user']['name'];
 
 $controller->createTank($user['idUser']);
 $controller->deleteTank($user['idUser']);
+$controller->updateTank($user['idUser']);
 $tanks = $controller->listUserTanks($user['idUser']);
 ?>
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ include 'layout/header.php';
     <hr>
 
     <h3>TINACOS REGISTRADOS:</h3>
-    <div class="tanks-grid" style="display: flex; gap: 20px; flex-wrap: wrap;">
+    <div class="tanks-grid">
         <?php if(empty($tanks)): ?>
             <p>No hay tinacos registrados.</p>
         <?php else: ?>
@@ -44,13 +45,12 @@ include 'layout/header.php';
                         <h4><?php echo htmlspecialchars($tank['description']); ?></h4>
                         <p><strong>Capacidad:</strong> <?php echo $tank['capcity']; ?> L</p>
                         <p><strong>Ubicación:</strong> <?php echo htmlspecialchars($tank['location']); ?></p>
-                        <p><strong>Instalado:</strong> <?php echo $tank['installation_date']; ?></p>
                         <div class="status-indicator" style="color: green;">Estado: Óptimo</div>
                     </div>
                     <div class="dropdown">
                         <button class="dropbtn" onclick="toggleDropdown(this)">Opciones</button>
                         <div class="dropdown-content">
-                            <a href="edit_tank.php?id=<?php echo $tank['idTank']; ?>">Editar</a>
+                            <a href="update_tank.php?idTank=<?php echo $tank['idTank']; ?>&idUser=<?php echo $user['idUser']; ?>">Editar</a>
                             
                             <form action="tanks.php" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este tanque?');">
                                 <input type="hidden" name="idTank" value="<?php echo $tank['idTank']; ?>">

@@ -30,7 +30,6 @@ $tanks = $controller->listUserTanks($user['idUser']);
             <input class="input" type="text" name="description" placeholder="Descripción (ej: Tinaco Azotea)" required>
             <input class="input" type="number" step="0.01" name="capacity" placeholder="Capacidad (Lts)" required>
             <input class="input" type="text" name="location" placeholder="Ubicación" required>
-            <input class="input" type="date" name="installation_date" required>
             <button type="submit" name="add_tank" class="btn">Guardar Tinaco</button>
         </form>
     </div>
