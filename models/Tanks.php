@@ -62,5 +62,17 @@ class Tanks {
             ":location" => $location
         ]);
     }
+
+    public function saveLog($idTank, $level) {
+    $query = "INSERT INTO water_level_log (current_level, water_quality_score, idTank) 
+              VALUES (:level, :quality, :idTank)";
+    $stmt = $this->conn->prepare($query);
+    
+    return $stmt->execute([
+        ":level"   => $level,
+        ":quality" => 100, // Valor por defecto
+        ":idTank"  => $idTank
+    ]);
+}
 }
 ?>

@@ -1,5 +1,5 @@
 <header>
-    <a href="/MerryWeather/views/home.php" style="text-decoration: none;">
+    <a href="../views/tanks.php" style="text-decoration: none;">
         <div class="logo">
             <img src="../assets/img/logoW.png" alt="Logo"  style="width:50px;">
             <p style="color:white; text-decoration: none; font-weight: bold;">MerryWeather</p>
@@ -13,11 +13,13 @@
     </button>
 
     <nav id="nav-menu">
+
+        <!-- IMPLEMENTAR CUANDO SE PUEDA Y TENGA TIEMPO -->
         <div class="menu">
         <?php if (isset($_SESSION['user'])): 
         $currentPage = basename($_SERVER['PHP_SELF']);?>
-        <?php if ($currentPage !== 'dashboard.php'): ?>
-            <a href="dashboard.php">Inicio</a>
+        <?php if ($currentPage !== 'tanks.php'): ?>
+            <a href="tanks.php">Inicio</a>
         <?php endif; ?>
 
         <?php if ($currentPage !== 'tanks.php'): ?>

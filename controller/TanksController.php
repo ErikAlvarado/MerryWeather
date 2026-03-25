@@ -62,5 +62,12 @@ class TanksController {
         }
         return false;
     }
+
+    public function registerLevelLog($idTank, $level) {
+        if ($idTank && $level !== null) {
+            return $this->tankModel->saveLog($idTank, $level);
+        }
+        return false;
+    }
 }
 ?>

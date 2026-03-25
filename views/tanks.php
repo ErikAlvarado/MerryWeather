@@ -41,14 +41,23 @@ include 'layout/header.php';
             <?php foreach($tanks as $tank): ?>
                 <div class="tank-card" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
                     <div class="tank-info">
-                    <img src="" alt="">
+                        <div class="progress-container" style="background: #eee; border-radius: 30px; height: 25px; width: 100%;">
+                            <div id="bar-<?php echo $tank['idTank']; ?>" class="progress-bar" style="width: 0%; height: 100%; background-color: #2196F3; transition: width 0.5s;"></div>
+                        </div>
+                            <br>
+                            <button onclick="conectionArduino(<?php echo $tank['idTank']; ?>)" class="btn">Conectar Sensor</button>
+                            
+                            <h4><?php echo htmlspecialchars($tank['description']); ?></h4>
+                            <p><strong>Nivel:</strong> <span id="text-<?php echo $tank['idTank']; ?>">0</span>%</p>
+                            
+                        
                         <h4><?php echo htmlspecialchars($tank['description']); ?></h4>
                         <p><strong>Capacidad:</strong> <?php echo $tank['capcity']; ?> L</p>
                         <p><strong>Ubicación:</strong> <?php echo htmlspecialchars($tank['location']); ?></p>
                         <div class="status-indicator" style="color: green;">Estado: Óptimo</div>
                     </div>
                     <div class="dropdown">
-                        <button class="dropbtn" onclick="toggleDropdown(this)">Opciones</button>
+                        <button class="btn" onclick="toggleDropdown(this)">Opciones</button>
                         <div class="dropdown-content">
                             <a href="update_tank.php?idTank=<?php echo $tank['idTank']; ?>&idUser=<?php echo $user['idUser']; ?>">Editar</a>
                             
@@ -64,10 +73,9 @@ include 'layout/header.php';
     </div>
   </main>
 </div>
-<script>
-const tanksfrom = <?php echo json_encode($tanks); ?>;
-</script>
-<script src="/MerryWeather/assets/js/tanksdropdown.js"></script>
+<script>const tanksfrom = <?php echo json_encode($tanks); ?>;</script>
+<script src="../assets/js/conectionArduino.js"></script>
+<script src="../assets/js/tanksdropdown.js"></script>
 <script src="../assets/js/indexed_tanks.js"></script>
 </body>
 </html>

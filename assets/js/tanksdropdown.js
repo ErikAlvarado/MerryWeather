@@ -11,7 +11,7 @@ function toggleDropdown(button) {
 }
 
 window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
+    if (!event.target.matches('.btn')) {
         document.querySelectorAll('.dropdown-content').forEach(content => {
             content.classList.remove('show');
         });

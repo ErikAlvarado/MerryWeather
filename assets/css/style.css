@@ -62,8 +62,10 @@ input {
     transition: padding 0.3s ease, background-color 0.5s ease, color 0.3s ease;
 }
 
+
 .content{
-    padding: 20px;
+    /* padding: 20px; */
+    width: 100%;
     display: flex;
     align-items: center;
     min-height: calc(90vh - 80px);
@@ -193,7 +195,7 @@ nav a:hover {
     background: white; 
     border-radius: 12px; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    width: 260px;
+    width: 100%;
     border: 1px solid #eee;
     display: flex;
     flex-direction: column;
@@ -201,6 +203,7 @@ nav a:hover {
     transition: all 0.3s ease;
 }
 .tanks-grid{
+  width: 50%;  
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -210,6 +213,21 @@ nav a:hover {
 .tank-info {
     padding: 20px;
 }
+
+@media (max-width: 768px) {
+    .tank-card {
+        width: 100%;
+    }
+
+    .tanks-grid{
+        width: 90%;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
 
 .dropdown {
     width: 100%;
@@ -273,6 +291,35 @@ nav a:hover {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+.progress-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    margin: 10px 0;
+    height: 25px; 
+    overflow: hidden;
+    padding: 10px;
+}
+
+
+.progress-bar {
+    width: 0%;  
+    height: 100%;
+    background-color: #2196F3;
+    transition: width 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+
+
+
 
 
 
