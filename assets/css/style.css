@@ -23,6 +23,7 @@ body {
 }
 
 input {
+    text-align: center;
     outline: none;
 }
 
@@ -175,6 +176,11 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
+}
+
+form {
+    text-align: center;
 }
 
 /* .login-register {

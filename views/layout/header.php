@@ -18,8 +18,8 @@
         <div class="menu">
         <?php if (isset($_SESSION['user'])): 
         $currentPage = basename($_SERVER['PHP_SELF']);?>
-        <?php if ($currentPage !== 'tanks.php'): ?>
-            <a href="tanks.php">Inicio</a>
+        <?php if ($currentPage !== 'dashboard.php'): ?>
+            <a href="dashboard.php">Inicio</a>
         <?php endif; ?>
 
         <?php if ($currentPage !== 'tanks.php'): ?>

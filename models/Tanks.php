@@ -70,9 +70,44 @@ class Tanks {
     
     return $stmt->execute([
         ":level"   => $level,
-        ":quality" => 100, // Valor por defecto
+        ":quality" => 100,
         ":idTank"  => $idTank
     ]);
+}
+
+
+public function getLevelHistory($idUser, $limit = 20) {
+    // Unimos (JOIN) la tabla de logs con la de tanques para filtrar por el dueño (idUser)
+    $query = "SELECT l.current_level, l.reading_date, t.description 
+              FROM water_level_log l
+              INNER JOIN water_tank t ON l.idTank = t.idTank
+              WHERE t.idUser = :idUser 
+              ORDER BY l.reading_date DESC 
+              LIMIT :limit";
+
+    $stmt = $this->conn->prepare($query);
+    
+    $stmt->bindValue(":idUser", $idUser, PDO::PARAM_INT);
+    $stmt->bindValue(":limit", (int)$limit, PDO::PARAM_INT);
+    
+    $stmt->execute();
+    return $stmt;
+}
+
+public function getLevelHistorySeparated($idUser, $limit = 30) {
+    // Traemos las lecturas incluyendo el ID del tanque para poder agruparlas en el controlador o vista
+    $query = "SELECT l.current_level, l.reading_date, t.idTank, t.description 
+              FROM water_level_log l
+              INNER JOIN water_tank t ON l.idTank = t.idTank
+              WHERE t.idUser = :idUser 
+              ORDER BY l.reading_date DESC 
+              LIMIT :limit";
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindValue(":idUser", $idUser, PDO::PARAM_INT);
+    $stmt->bindValue(":limit", (int)$limit, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 }
 ?>

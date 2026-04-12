@@ -137,3 +137,80 @@ DELETE FROM water_tank WHERE idUser = @UserID;
 DELETE FROM users WHERE idUser = @UserID;
 
 COMMIT;
+
+
+
+
+-- Nuevo codigo
+
+DELIMITER //
+
+CREATE PROCEDURE sp_ObtenerResumenTanques(IN p_idUser INT)
+BEGIN
+    SELECT 
+        t.idTank,
+        t.description,
+        t.capcity as capacity,
+        t.location,
+        MAX(l.reading_date) as last_update,
+        -- Obtenemos el último nivel registrado
+        (SELECT current_level FROM water_level_log WHERE idTank = t.idTank ORDER BY reading_date DESC LIMIT 1) as current_level,
+        -- Promedio de calidad
+        AVG(l.water_quality_score) as avg_quality,
+        -- Usamos tu función para el porcentaje
+        fn_calcularPorcentajeAgua(t.capcity, (SELECT current_level FROM water_level_log WHERE idTank = t.idTank ORDER BY reading_date DESC LIMIT 1)) as percentage
+    FROM water_tank t
+    LEFT JOIN water_level_log l ON t.idTank = l.idTank
+    WHERE t.idUser = p_idUser
+    GROUP BY t.idTank;
+END //
+
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE PROCEDURE sp_ObtenerDetalleAnaliticoTanque(IN p_idTank INT)
+BEGIN
+    -- Declaramos variables para el análisis
+    DECLARE v_ultimo_nivel DECIMAL(10,2);
+    DECLARE v_penultimo_nivel DECIMAL(10,2);
+    DECLARE v_capacidad DECIMAL(10,2);
+    DECLARE v_dias_inactivo INT;
+    DECLARE v_promedio_consumo_diario DECIMAL(10,2);
+
+    -- 1. Obtener datos básicos y capacidad
+    SELECT capcity INTO v_capacidad FROM water_tank WHERE idTank = p_idTank;
+
+    -- 2. Obtener las dos últimas lecturas para ver tendencia inmediata
+    SELECT current_level INTO v_ultimo_nivel FROM water_level_log 
+    WHERE idTank = p_idTank ORDER BY reading_date DESC LIMIT 1;
+    
+    SELECT current_level INTO v_penultimo_nivel FROM water_level_log 
+    WHERE idTank = p_idTank ORDER BY reading_date DESC LIMIT 1 OFFSET 1;
+
+    -- 3. Calcular días desde la última actualización significativa
+    SELECT DATEDIFF(NOW(), MAX(reading_date)) INTO v_dias_inactivo 
+    FROM water_level_log WHERE idTank = p_idTank;
+
+    -- 4. Retornar análisis completo
+    SELECT 
+        t.*,
+        v_ultimo_nivel as current_level,
+        fn_calcularPorcentajeAgua(t.capcity, v_ultimo_nivel) as percentage,
+        -- Lógica de Alertas
+        CASE 
+            WHEN v_ultimo_nivel < v_penultimo_nivel AND v_ultimo_nivel > 0 AND HOUR(NOW()) BETWEEN 1 AND 5 
+                THEN 'Posible Fuga (Consumo Nocturno)'
+            WHEN v_ultimo_nivel > v_penultimo_nivel THEN 'Llenado en curso'
+            WHEN v_dias_inactivo > 3 THEN 'Inactivo (No hay reportes)'
+            WHEN v_ultimo_nivel < (t.capcity * 0.15) THEN 'Nivel Crítico Bajo'
+            ELSE 'Normal'
+        END as status_eval,
+        -- Cálculo de salud del agua (basado en el último log)
+        (SELECT water_quality_score FROM water_level_log WHERE idTank = p_idTank ORDER BY reading_date DESC LIMIT 1) as quality
+    FROM water_tank t
+    WHERE t.idTank = p_idTank;
+END //
+
+DELIMITER ;

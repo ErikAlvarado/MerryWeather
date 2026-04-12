@@ -69,5 +69,37 @@ class TanksController {
         }
         return false;
     }
+
+   public function getWaterHistory($idUser) {
+    $stmt = $this->tankModel->getLevelHistory($idUser);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+public function getStatsByTank($idUser) {
+    $history = $this->tankModel->getLevelHistorySeparated($idUser);
+    $dataByTank = [];
+
+    foreach ($history as $row) {
+        $id = $row['idTank'];
+        if (!isset($dataByTank[$id])) {
+            $dataByTank[$id] = [
+                'name' => $row['description'],
+                'levels' => [],
+                'dates' => []
+            ];
+        }
+        array_unshift($dataByTank[$id]['levels'], $row['current_level']);
+        array_unshift($dataByTank[$id]['dates'], date('H:i', strtotime($row['reading_date'])));
+    }
+    return $dataByTank;
+}
+
+public function getTanksSummary($idUser) {
+    $query = "CALL sp_ObtenerResumenTanques(:idUser)";
+    $stmt = $this->db->prepare($query);
+    $stmt->bindParam(":idUser", $idUser, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }
 ?>
