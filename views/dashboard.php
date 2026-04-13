@@ -177,7 +177,12 @@ $statsByTank = $controller->getStatsByTank($user['idUser']);
                         </h2>
                         <small style="color: #64748b;"><?php echo $tank['location']; ?></small>
                     </div>
-                    <span class="status-badge">Hoy <?php echo date('H:i', strtotime($tank['last_update'])); ?></span>
+                    <span class="status-badge">
+    <?php 
+        $fecha_raw = $tank['last_update'] ?? date('Y-m-d H:i:s');
+        echo "Hoy " . date('H:i', strtotime($fecha_raw)); 
+    ?>
+</span>
                 </div>
 
                 <div class="visual-container">

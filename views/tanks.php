@@ -33,7 +33,7 @@ include 'layout/header.php';
 
     <hr>
 
-    <h3>TINACOS REGISTRADOS:</h3>
+    <h3>CONFIGURACION:</h3>
     <div class="tanks-grid">
         <?php if(empty($tanks)): ?>
             <p>No hay tinacos registrados.</p>

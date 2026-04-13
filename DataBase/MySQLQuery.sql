@@ -36,6 +36,14 @@ CREATE TABLE water_tank(
     CONSTRAINT FK_water_tank_users FOREIGN KEY(idUser) REFERENCES users(idUser)
 );
 
+ALTER TABLE water_tank 
+DROP FOREIGN KEY FK_water_tank_users;
+
+ALTER TABLE water_tank 
+ADD CONSTRAINT FK_water_tank_users 
+FOREIGN KEY (idUser) REFERENCES users(idUser) 
+ON DELETE CASCADE;
+
 ALTER TABLE water_tank MODIFY COLUMN installation_date DATETIME DEFAULT CURRENT_TIMESTAMP;
 
 CREATE TABLE water_level_log (
@@ -46,3 +54,13 @@ CREATE TABLE water_level_log (
     idTank INT,
     CONSTRAINT FK_log_tank FOREIGN KEY (idTank) REFERENCES water_tank(idTank)
 );
+
+-- 1. Primero eliminamos la restricción vieja
+ALTER TABLE water_level_log 
+DROP FOREIGN KEY FK_log_tank;
+
+-- 2. La volvemos a crear con la instrucción de cascada
+ALTER TABLE water_level_log 
+ADD CONSTRAINT FK_log_tank 
+FOREIGN KEY (idTank) REFERENCES water_tank(idTank) 
+ON DELETE CASCADE;

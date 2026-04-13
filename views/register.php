@@ -23,7 +23,7 @@
                     <option value="3">Otro...</option>
                 </select>
 
-                <input type="hidden" name="idRole" value="2"> 
+                <input type="hidden" name="idRole" value="1"> 
                 <button type="submit" class="btn">Registrarse</button>
                 <p>¿Ya tienes una cuenta? <a href="login.php">Inicia sesión</a></p>
         </form>

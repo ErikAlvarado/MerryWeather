@@ -49,7 +49,7 @@ class User {
     }
 
     public function authenticate($email, $password) {
-        $query = "SELECT idUser, name, email, passwordHash 
+        $query = "SELECT idUser, name, email, passwordHash, idRole 
                   FROM " . $this->table_name . " 
                   WHERE email = :email 
                   LIMIT 1";

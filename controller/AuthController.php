@@ -38,9 +38,14 @@ switch ($action) {
 
             if ($userData) {
                 $_SESSION['user'] = $userData;
-                header("Location: ../views/tanks.php");
+
+                if ($userData['idRole'] == 2){
+                    header("Location: ../views/admin/admin.php");
+                }else{
+                    header("Location: ../views/tanks.php");
+                }
                 exit();
-            } else {
+            }else{
                 header("Location: ../views/login.php?error=1");
                 exit();
             }
